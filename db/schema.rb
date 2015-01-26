@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126012042) do
+ActiveRecord::Schema.define(version: 20150126064812) do
+
+  create_table "attendances", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "date"
-
-ActiveRecord::Schema.define(version: 20150126064812) do
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                          null: false
@@ -35,29 +48,13 @@ ActiveRecord::Schema.define(version: 20150126064812) do
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
-
     t.string   "address"
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
-
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "attendances", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "event_id"
-  end
-
-
 
 end
