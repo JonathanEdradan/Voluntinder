@@ -27,4 +27,9 @@ RSpec.describe User, :type => :model do
   	it { is_expected.to validate_presence_of :state }
   	it { is_expected.to validate_presence_of :zipcode }
   end
+
+  describe 'Associations' do
+  	it { is_expected.to have_many :events }
+  	it { is_expected.to have_many :attendances }
+  end
 end
