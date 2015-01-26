@@ -11,9 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126052510) do
+
+ActiveRecord::Schema.define(version: 20150126064812) do
+
+  create_table "attendances", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "date"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -24,8 +47,12 @@ ActiveRecord::Schema.define(version: 20150126052510) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
